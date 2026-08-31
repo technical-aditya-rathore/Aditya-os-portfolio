@@ -61,8 +61,9 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
           }`}
           style={{
             background: isDay
-              ? "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(228,238,236,0.86))"
+              ? "linear-gradient(135deg, rgba(255,255,255,0.96), rgba(232,239,236,0.9))"
               : "linear-gradient(135deg, rgba(17,22,24,0.72), rgba(19,24,26,0.48))",
+            borderColor: isDay ? "rgba(22, 46, 42, 0.2)" : undefined,
           }}
         >
           <a
@@ -115,8 +116,9 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
                     className="system-settings absolute right-0 top-12 z-50 w-[min(18rem,calc(100vw-1rem))] p-4 origin-top-right"
                     style={{
                       background: isDay
-                        ? "linear-gradient(160deg, rgba(255,255,255,0.96), rgba(233,240,238,0.94))"
+                        ? "linear-gradient(160deg, rgba(255,255,255,0.99), rgba(226,235,232,0.96))"
                         : "linear-gradient(160deg, rgba(12,16,18,0.78), rgba(22,28,30,0.66))",
+                      borderColor: isDay ? "rgba(28, 55, 52, 0.2)" : undefined,
                     }}
                   >
                     <div className="flex items-center gap-2 mb-3">
@@ -186,7 +188,7 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-99 backdrop-blur-xl flex flex-col"
-            style={{ background: isDay ? "rgba(237,242,241,0.97)" : "rgba(11,13,15,0.97)" }}
+            style={{ background: isDay ? "rgba(244,247,246,0.97)" : "rgba(11,13,15,0.97)" }}
           >
             <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-line)]">
               <span className="font-display font-semibold text-sm">
