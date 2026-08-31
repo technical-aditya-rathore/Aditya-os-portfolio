@@ -50,7 +50,17 @@ function SkillIcon({ name }: { name: string }) {
   const [failed, setFailed] = useState(!iconId);
 
   if (failed) {
-    return <span className="skill-icon-fallback">{name}</span>;
+    const shortLabel = name
+      .replace(/\.[a-z]+$/gi, "")
+      .replace(/[^a-zA-Z0-9]+/g, " ")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((part) => part.slice(0, 2).toUpperCase())
+      .join("")
+      .slice(0, 3) || "SK";
+
+    return <span className="skill-icon-fallback" title={name}>{shortLabel}</span>;
   }
 
   return (

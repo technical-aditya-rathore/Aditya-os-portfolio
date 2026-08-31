@@ -7,16 +7,18 @@ type Line = { text: string; kind?: "cmd" | "out" };
 
 const HELP = "about · projects · skills · experience · contact · github · resume · clear";
 
-function AssistantLogo() {
+function AssistantLogo({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="relative flex h-9 w-9 items-center justify-center rounded-2xl border border-[var(--color-signal)] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.38),transparent_32%),linear-gradient(145deg,color-mix(in_srgb,var(--color-signal)_24%,transparent),color-mix(in_srgb,var(--color-surface-2)_80%,transparent))] shadow-[0_0_26px_color-mix(in_srgb,var(--color-signal)_22%,transparent)]">
-      <div className="relative flex h-5 w-5 items-center justify-center">
-        <span className="absolute h-4 w-4 rounded-full border border-[var(--color-signal)] bg-[var(--color-ink)]/10" />
-        <span className="absolute h-2.5 w-2.5 rounded-full bg-[var(--color-signal)] shadow-[0_0_12px_var(--color-signal)]" />
-        <span className="absolute -top-1 left-1 h-1.5 w-1.5 rounded-full bg-[var(--color-text)]" />
+    <div
+      className={`relative flex items-center justify-center rounded-2xl border border-[var(--color-signal)] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.38),transparent_32%),linear-gradient(145deg,color-mix(in_srgb,var(--color-signal)_24%,transparent),color-mix(in_srgb,var(--color-surface-2)_80%,transparent))] shadow-[0_0_26px_color-mix(in_srgb,var(--color-signal)_22%,transparent)] ${compact ? "h-7 w-7 sm:h-8 sm:w-8" : "h-8 w-8 sm:h-9 sm:w-9"}`}
+    >
+      <div className={`relative flex items-center justify-center ${compact ? "h-4 w-4 sm:h-5 sm:w-5" : "h-4 w-4 sm:h-5 sm:w-5"}`}>
+        <span className={`absolute rounded-full border border-[var(--color-signal)] bg-[var(--color-ink)]/10 ${compact ? "h-3.5 w-3.5 sm:h-4 sm:w-4" : "h-4 w-4"}`} />
+        <span className={`absolute rounded-full bg-[var(--color-signal)] shadow-[0_0_12px_var(--color-signal)] ${compact ? "h-2 w-2 sm:h-2.5 sm:w-2.5" : "h-2.5 w-2.5"}`} />
+        <span className={`absolute rounded-full bg-[var(--color-text)] ${compact ? "-top-0.5 left-1 h-1 w-1 sm:-top-1 sm:left-1 sm:h-1.5 sm:w-1.5" : "-top-1 left-1 h-1.5 w-1.5"}`} />
       </div>
-      <span className="absolute -bottom-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-[var(--color-ink)] ring-2 ring-[var(--color-signal)]">
-        <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-signal)]" />
+      <span className={`absolute -bottom-1 -right-1 flex items-center justify-center rounded-full bg-[var(--color-ink)] ring-2 ring-[var(--color-signal)] ${compact ? "h-2.5 w-2.5 sm:h-3 sm:w-3" : "h-3 w-3"}`}>
+        <span className={`rounded-full bg-[var(--color-signal)] ${compact ? "h-1 w-1 sm:h-1.5 sm:w-1.5" : "h-1.5 w-1.5"}`} />
       </span>
     </div>
   );
@@ -113,9 +115,9 @@ export default function Terminal() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open portfolio assistant"
-        className="fixed bottom-36 right-4 z-40 flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[rgba(11,13,15,0.58)] px-2.5 py-2 text-[var(--color-text-dim)] shadow-[0_18px_38px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-colors hover:border-[var(--color-signal)] hover:text-[var(--color-signal)] sm:bottom-20"
+        className="fixed bottom-24 right-3 z-40 flex items-center gap-1.5 rounded-full border border-[var(--color-line)] bg-[rgba(11,13,15,0.58)] px-1.5 py-1.5 text-[var(--color-text-dim)] shadow-[0_18px_38px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-colors hover:border-[var(--color-signal)] hover:text-[var(--color-signal)] sm:bottom-20 sm:right-4 sm:gap-2 sm:px-2.5 sm:py-2"
       >
-        <AssistantLogo />
+        <AssistantLogo compact />
         <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-dim)]">
           <span>Assistant</span>
         </span>
@@ -135,21 +137,21 @@ export default function Terminal() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 16 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full sm:max-w-lg rounded-t-2xl sm:rounded-2xl bg-[var(--color-surface)] border border-[var(--color-line)] font-mono text-sm overflow-hidden"
+              className="w-[calc(100vw-0.75rem)] max-w-[calc(100vw-0.75rem)] sm:max-w-lg rounded-t-2xl sm:rounded-2xl bg-[var(--color-surface)] border border-[var(--color-line)] font-mono text-xs sm:text-sm overflow-hidden"
             >
-              <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-line)]">
+              <div className="flex items-center justify-between px-3 py-2.5 sm:px-4 sm:py-3 border-b border-[var(--color-line)]">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[var(--color-rose)]" />
                   <span className="w-2.5 h-2.5 rounded-full bg-[var(--color-amber)]" />
                   <span className="w-2.5 h-2.5 rounded-full bg-[var(--color-signal)]" />
-                  <span className="ml-2 text-[11px] text-[var(--color-text-faint)]">aditya@os:~</span>
+                  <span className="ml-2 text-[9px] sm:text-[11px] text-[var(--color-text-faint)]">aditya@os:~</span>
                 </div>
                 <button onClick={() => setOpen(false)} aria-label="Close terminal">
-                  <X size={15} className="text-[var(--color-text-dim)]" />
+                  <X size={14} className="text-[var(--color-text-dim)] sm:size-[15px]" />
                 </button>
               </div>
 
-              <div className="h-64 overflow-y-auto px-4 py-3 space-y-1">
+              <div className="h-[60vh] max-h-72 sm:h-64 overflow-y-auto px-3 py-2.5 sm:px-4 sm:py-3 space-y-1">
                 {lines.map((l, i) => (
                   <p
                     key={i}
@@ -161,13 +163,13 @@ export default function Terminal() {
                 <div ref={endRef} />
               </div>
 
-              <form onSubmit={submit} className="flex items-center gap-2 px-4 py-3 border-t border-[var(--color-line)]">
-                <span className="signal-text">$</span>
+              <form onSubmit={submit} className="flex items-center gap-2 px-3 py-2.5 sm:px-4 sm:py-3 border-t border-[var(--color-line)]">
+                <span className="signal-text text-xs sm:text-sm">$</span>
                 <input
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  className="flex-1 bg-transparent outline-none text-[var(--color-text)]"
+                  className="flex-1 bg-transparent outline-none text-[var(--color-text)] text-xs sm:text-sm"
                   placeholder="type a command..."
                   aria-label="Terminal command input"
                   autoComplete="off"
