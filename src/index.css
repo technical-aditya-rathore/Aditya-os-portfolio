@@ -233,6 +233,9 @@ body {
 .skill-chip {
   position: relative;
   z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   border: 1px solid var(--color-line);
   border-radius: 999px;
   padding: 0.35rem 0.6rem;
@@ -242,10 +245,24 @@ body {
   transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
+.skill-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
+  animation: skillFloat 3.2s ease-in-out infinite;
+  animation-delay: var(--skill-delay, 0s);
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--color-signal) 28%, transparent));
+}
+
 .skill-chip:hover {
   color: var(--color-text);
   border-color: var(--color-signal);
   background: color-mix(in srgb, var(--color-signal) 10%, transparent);
+}
+
+@keyframes skillFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(-2deg); }
 }
 
 .settings-trigger:hover,
@@ -321,6 +338,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .neon-field { animation: none; }
+  .skill-icon { animation: none; }
 }
 
 .text-balance { text-wrap: balance; }
