@@ -113,7 +113,7 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
                     initial={{ opacity: 0, y: -8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                    className="system-settings absolute right-0 top-12 z-50 w-[min(17.5rem,calc(100vw-0.75rem))] max-w-[calc(100vw-0.75rem)] p-4 origin-top-right"
+                    className="system-settings fixed left-3 right-3 top-16 z-50 mx-auto max-w-[17.5rem] p-4 origin-top-right sm:absolute sm:left-auto sm:right-0 sm:top-12 sm:w-[min(18rem,calc(100vw-1rem))] sm:max-w-[calc(100vw-1rem)]"
                     style={{
                       background: isDay
                         ? "linear-gradient(160deg, rgba(255,255,255,0.99), rgba(226,235,232,0.96))"

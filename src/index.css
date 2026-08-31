@@ -315,8 +315,10 @@ body {
 }
 
 .skill-icon-fallback {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 3.1rem;
   height: 3.1rem;
   padding: 0.2rem;
@@ -324,15 +326,20 @@ body {
   background: var(--color-signal);
   color: var(--color-ink);
   font-family: var(--font-mono);
-  font-size: clamp(0.38rem, 0.6vw, 0.58rem);
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-align: center;
   animation: skillFloat 3.2s ease-in-out infinite;
   animation-delay: var(--skill-delay, 0s);
   box-shadow: 0 0 12px color-mix(in srgb, var(--color-signal) 32%, transparent);
+}
+
+.skill-icon-fallback-line {
+  display: block;
+  font-size: clamp(0.34rem, 0.48vw, 0.52rem);
+  white-space: nowrap;
 }
 
 .skill-node-name {
