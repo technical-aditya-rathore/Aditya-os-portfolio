@@ -30,19 +30,19 @@
   --color-surface: #f9fcfb;
   --color-surface-2: #e5efed;
   --color-surface-3: #c9d9d5;
-  --color-line: rgba(24, 42, 40, 0.2);
-  --color-line-soft: rgba(24, 42, 40, 0.11);
-  --color-text: #172522;
-  --color-text-dim: #435752;
-  --color-text-faint: #657a75;
+  --color-line: rgba(24, 42, 40, 0.22);
+  --color-line-soft: rgba(24, 42, 40, 0.12);
+  --color-text: #102522;
+  --color-text-dim: #2f4a46;
+  --color-text-faint: #4c6662;
   --color-signal: #a86200;
   --color-signal-dim: #7d4900;
   --color-violet: #298995;
   --color-amber: #d96843;
   --color-rose: #c94d55;
-  --neon-gold: rgba(242, 193, 78, 0.2);
-  --neon-cyan: rgba(41, 137, 149, 0.12);
-  --neon-coral: rgba(201, 77, 85, 0.08);
+  --neon-gold: rgba(242, 193, 78, 0.22);
+  --neon-cyan: rgba(41, 137, 149, 0.15);
+  --neon-coral: rgba(201, 77, 85, 0.1);
   color-scheme: light;
 }
 

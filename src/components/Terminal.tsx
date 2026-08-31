@@ -113,7 +113,7 @@ export default function Terminal() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open portfolio assistant"
-        className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[rgba(11,13,15,0.58)] px-2.5 py-2 text-[var(--color-text-dim)] shadow-[0_18px_38px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-colors hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+        className="fixed bottom-20 right-4 z-40 flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[rgba(11,13,15,0.58)] px-2.5 py-2 text-[var(--color-text-dim)] shadow-[0_18px_38px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-colors hover:border-[var(--color-signal)] hover:text-[var(--color-signal)] sm:bottom-6"
       >
         <AssistantLogo />
         <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-dim)]">
