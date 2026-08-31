@@ -24,6 +24,10 @@ const accentOptions = [
   { id: "pink", label: "Pink", color: "#ff7bd5" },
   { id: "indigo", label: "Indigo", color: "#7c8cff" },
   { id: "emerald", label: "Emerald", color: "#41d6a5" },
+  { id: "sunset", label: "Sunset", color: "#ff9f6e" },
+  { id: "aqua", label: "Aqua", color: "#6fe9e1" },
+  { id: "magenta", label: "Magenta", color: "#d573ff" },
+  { id: "chartreuse", label: "Chartreuse", color: "#d8f76a" },
 ];
 
 export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: NavProps) {
@@ -55,6 +59,7 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
           className={`w-full flex items-center justify-between rounded-full glow-border glass transition-all duration-300 ${
             scrolled ? "mt-3 max-w-5xl px-4 py-2" : "mt-5 max-w-[1350px] px-4 sm:px-5 py-3"
           }`}
+          style={{ background: "linear-gradient(135deg, rgba(17,22,24,0.72), rgba(19,24,26,0.48))" }}
         >
           <a
             href="#home"
@@ -104,6 +109,7 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.96 }}
                     className="system-settings absolute right-0 top-12 z-50 w-[min(18rem,calc(100vw-1rem))] p-4 origin-top-right"
+                    style={{ background: "linear-gradient(160deg, rgba(12,16,18,0.78), rgba(22,28,30,0.66))" }}
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Palette size={14} className="signal-text" />
@@ -122,7 +128,7 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
                       </button>
                     </div>
                     <p className="label mb-2">Signal color</p>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-4 gap-2">
                       {accentOptions.map((option) => (
                         <button
                           key={option.id}
@@ -132,11 +138,12 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
                           }}
                           aria-label={`Use ${option.label} palette`}
                           aria-pressed={accent === option.id}
-                          className={`flex items-center justify-between rounded-lg border px-2 py-1.5 text-left transition-colors ${accent === option.id ? "border-[var(--color-signal)] bg-[var(--color-signal)]/10" : "border-[var(--color-line)]"}`}
+                          className={`flex flex-col items-center justify-center gap-1 rounded-lg border px-1.5 py-1.5 transition-colors ${accent === option.id ? "border-[var(--color-signal)] bg-[var(--color-signal)]/10" : "border-[var(--color-line)]"}`}
                         >
-                          <span className="h-2.5 w-2.5 rounded-full" style={{ background: option.color, boxShadow: `0 0 10px ${option.color}` }} />
-                          <span className="text-[9px] text-[var(--color-text-dim)]">{option.label}</span>
-                          {accent === option.id && <Check size={11} className="signal-text" />}
+                          <span className="relative h-3.5 w-3.5 rounded-full" style={{ background: option.color, boxShadow: `0 0 10px ${option.color}` }}>
+                            {accent === option.id && <span className="absolute inset-0 rounded-full ring-2 ring-[var(--color-signal)]" />}
+                          </span>
+                          <span className="text-[8px] text-[var(--color-text-dim)]">{option.label}</span>
                         </button>
                       ))}
                     </div>

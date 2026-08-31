@@ -9,9 +9,15 @@ const HELP = "about · projects · skills · experience · contact · github · 
 
 function AssistantLogo() {
   return (
-    <div className="relative flex h-9 w-9 items-center justify-center rounded-2xl border border-[var(--color-signal)] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.3),transparent_35%),linear-gradient(145deg,color-mix(in_srgb,var(--color-signal)_25%,transparent),color-mix(in_srgb,var(--color-surface-2)_70%,transparent))] shadow-[0_0_22px_color-mix(in_srgb,var(--color-signal)_28%,transparent)]">
-      <span className="font-display text-sm font-bold tracking-[0.12em] text-[var(--color-ink)]">A</span>
-      <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-[var(--color-signal)] shadow-[0_0_12px_var(--color-signal)]" />
+    <div className="relative flex h-9 w-9 items-center justify-center rounded-2xl border border-[var(--color-signal)] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.38),transparent_32%),linear-gradient(145deg,color-mix(in_srgb,var(--color-signal)_24%,transparent),color-mix(in_srgb,var(--color-surface-2)_80%,transparent))] shadow-[0_0_26px_color-mix(in_srgb,var(--color-signal)_22%,transparent)]">
+      <div className="relative flex h-5 w-5 items-center justify-center">
+        <span className="absolute h-4 w-4 rounded-full border border-[var(--color-signal)] bg-[var(--color-ink)]/10" />
+        <span className="absolute h-2.5 w-2.5 rounded-full bg-[var(--color-signal)] shadow-[0_0_12px_var(--color-signal)]" />
+        <span className="absolute -top-1 left-1 h-1.5 w-1.5 rounded-full bg-[var(--color-text)]" />
+      </div>
+      <span className="absolute -bottom-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-[var(--color-ink)] ring-2 ring-[var(--color-signal)]">
+        <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-signal)]" />
+      </span>
     </div>
   );
 }
@@ -107,7 +113,7 @@ export default function Terminal() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open portfolio assistant"
-        className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full glass border border-[var(--color-line)] px-2.5 py-2 text-[var(--color-text-dim)] shadow-[0_18px_38px_-24px_rgba(0,0,0,0.9)] transition-colors hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
+        className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[rgba(11,13,15,0.58)] px-2.5 py-2 text-[var(--color-text-dim)] shadow-[0_18px_38px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-colors hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
       >
         <AssistantLogo />
         <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-dim)]">
