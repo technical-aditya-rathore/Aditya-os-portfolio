@@ -12,14 +12,18 @@ interface NavProps {
 }
 
 const accentOptions = [
-  { id: "gold", label: "Solar Gold", color: "#f2c14e" },
-  { id: "cyan", label: "Electric Cyan", color: "#63d8e8" },
-  { id: "coral", label: "Signal Coral", color: "#ef6f6c" },
-  { id: "lime", label: "Laser Lime", color: "#b7e35f" },
-  { id: "violet", label: "Neon Violet", color: "#b58cff" },
-  { id: "blue", label: "Hyper Blue", color: "#5d9cff" },
-  { id: "orange", label: "Launch Orange", color: "#ff914d" },
-  { id: "mint", label: "Fresh Mint", color: "#55ddb5" },
+  { id: "gold", label: "Gold", color: "#f2c14e" },
+  { id: "cyan", label: "Cyan", color: "#63d8e8" },
+  { id: "coral", label: "Coral", color: "#ef6f6c" },
+  { id: "lime", label: "Lime", color: "#b7e35f" },
+  { id: "violet", label: "Violet", color: "#b58cff" },
+  { id: "blue", label: "Blue", color: "#5d9cff" },
+  { id: "orange", label: "Orange", color: "#ff914d" },
+  { id: "mint", label: "Mint", color: "#55ddb5" },
+  { id: "rose", label: "Rose", color: "#ff7aa2" },
+  { id: "pink", label: "Pink", color: "#ff7bd5" },
+  { id: "indigo", label: "Indigo", color: "#7c8cff" },
+  { id: "emerald", label: "Emerald", color: "#41d6a5" },
 ];
 
 export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: NavProps) {
@@ -99,7 +103,7 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
                     initial={{ opacity: 0, y: -8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                    className="system-settings absolute right-0 top-12 z-50 w-[min(16rem,calc(100vw-1rem))] p-4 origin-top-right"
+                    className="system-settings absolute right-0 top-12 z-50 w-[min(18rem,calc(100vw-1rem))] p-4 origin-top-right"
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Palette size={14} className="signal-text" />
@@ -118,18 +122,21 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
                       </button>
                     </div>
                     <p className="label mb-2">Signal color</p>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-3 gap-2">
                       {accentOptions.map((option) => (
                         <button
                           key={option.id}
-                          onClick={() => onAccentChange(option.id)}
+                          onClick={() => {
+                            onAccentChange(option.id);
+                            setSettingsOpen(false);
+                          }}
                           aria-label={`Use ${option.label} palette`}
                           aria-pressed={accent === option.id}
-                          className={`flex items-center gap-2 rounded-lg border px-2.5 py-2 text-left transition-colors ${accent === option.id ? "border-[var(--color-signal)] bg-[var(--color-signal)]/10" : "border-[var(--color-line)]"}`}
+                          className={`flex items-center justify-between rounded-lg border px-2 py-1.5 text-left transition-colors ${accent === option.id ? "border-[var(--color-signal)] bg-[var(--color-signal)]/10" : "border-[var(--color-line)]"}`}
                         >
                           <span className="h-2.5 w-2.5 rounded-full" style={{ background: option.color, boxShadow: `0 0 10px ${option.color}` }} />
-                          <span className="text-[10px] text-[var(--color-text-dim)]">{option.label}</span>
-                          {accent === option.id && <Check size={12} className="ml-auto signal-text" />}
+                          <span className="text-[9px] text-[var(--color-text-dim)]">{option.label}</span>
+                          {accent === option.id && <Check size={11} className="signal-text" />}
                         </button>
                       ))}
                     </div>

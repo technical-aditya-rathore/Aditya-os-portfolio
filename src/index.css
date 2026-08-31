@@ -53,6 +53,10 @@
 :root[data-accent="blue"] { --color-signal: #5d9cff; --color-signal-dim: #3975cf; --color-violet: #b58cff; --color-amber: #ff914d; }
 :root[data-accent="orange"] { --color-signal: #ff914d; --color-signal-dim: #c9652d; --color-violet: #63d8e8; --color-amber: #f2c14e; }
 :root[data-accent="mint"] { --color-signal: #55ddb5; --color-signal-dim: #2caa83; --color-violet: #5d9cff; --color-amber: #f2c14e; }
+:root[data-accent="rose"] { --color-signal: #ff7aa2; --color-signal-dim: #d85d86; --color-violet: #b58cff; --color-amber: #f2c14e; }
+:root[data-accent="pink"] { --color-signal: #ff7bd5; --color-signal-dim: #d95cbb; --color-violet: #7c8cff; --color-amber: #55ddb5; }
+:root[data-accent="indigo"] { --color-signal: #7c8cff; --color-signal-dim: #5a6be8; --color-violet: #ff7bd5; --color-amber: #f2c14e; }
+:root[data-accent="emerald"] { --color-signal: #41d6a5; --color-signal-dim: #22a77e; --color-violet: #7c8cff; --color-amber: #f2c14e; }
 
 * {
   box-sizing: border-box;
@@ -421,7 +425,7 @@ body {
   .skill-orbit { gap: 1rem 0.8rem; }
 
   .system-settings {
-    width: min(16rem, calc(100vw - 1rem));
+    width: min(18rem, calc(100vw - 1rem));
   }
 }
 
