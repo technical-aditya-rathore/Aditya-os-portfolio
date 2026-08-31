@@ -69,9 +69,9 @@ export const skillGroups: SkillGroup[] = [
   { title: "Backend", category: "03", skills: ["Node.js", "Express", "Django", "FastAPI", "Laravel"] },
   { title: "Databases", category: "04", skills: ["MySQL", "PostgreSQL", "MongoDB", "SQLite"] },
   { title: "Cloud & Deployment", category: "05", skills: ["AWS", "GCP", "Vercel", "Netlify", "Docker"] },
-  { title: "Data Science & AI", category: "06", skills: ["Python", "TensorFlow", "Pandas", "NumPy", "Data Analytics", "Power BI"] },
+  { title: "Data Science & AI", category: "06", skills: ["Python", "TensorFlow", "Data Analytics"] },
   { title: "Tools", category: "07", skills: ["Git", "GitHub", "GitHub Actions", "Docker"] },
-  { title: "Design", category: "08", skills: ["Figma", "Canva", "Notion"] },
+  { title: "Design", category: "08", skills: ["Figma","Notion"] },
 ];
 
 export const skills: Skill[] = [
