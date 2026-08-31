@@ -50,26 +50,7 @@ function SkillIcon({ name }: { name: string }) {
   const [failed, setFailed] = useState(!iconId);
 
   if (failed) {
-    const lines = name
-      .replace(/\.[a-z]+$/gi, "")
-      .replace(/[^a-zA-Z0-9]+/g, " ")
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((part) => part.length > 7 ? part.slice(0, 7) : part);
-
-    const label = lines.length ? lines : ["SK"];
-
-    return (
-      <span className="skill-icon-fallback" title={name}>
-        {label.map((line, index) => (
-          <span key={`${line}-${index}`} className="skill-icon-fallback-line">
-            {line}
-          </span>
-        ))}
-      </span>
-    );
+    return null;
   }
 
   return (
