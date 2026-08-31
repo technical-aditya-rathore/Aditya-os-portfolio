@@ -26,17 +26,17 @@
 }
 
 :root[data-theme="day"] {
-  --color-ink: #f5f0e6;
-  --color-surface: #fffaf0;
-  --color-surface-2: #eee7d8;
-  --color-surface-3: #d9cfbc;
-  --color-line: rgba(44, 50, 45, 0.16);
-  --color-line-soft: rgba(44, 50, 45, 0.08);
-  --color-text: #242923;
-  --color-text-dim: #5e665d;
-  --color-text-faint: #8c9388;
-  --color-signal: #bd7b08;
-  --color-signal-dim: #946006;
+  --color-ink: #edf2f1;
+  --color-surface: #f9fcfb;
+  --color-surface-2: #e5efed;
+  --color-surface-3: #c9d9d5;
+  --color-line: rgba(24, 42, 40, 0.2);
+  --color-line-soft: rgba(24, 42, 40, 0.11);
+  --color-text: #172522;
+  --color-text-dim: #435752;
+  --color-text-faint: #657a75;
+  --color-signal: #a86200;
+  --color-signal-dim: #7d4900;
   --color-violet: #298995;
   --color-amber: #d96843;
   --color-rose: #c94d55;
@@ -49,6 +49,10 @@
 :root[data-accent="cyan"] { --color-signal: #63d8e8; --color-signal-dim: #2da8ba; --color-violet: #f2c14e; --color-amber: #ef6f6c; }
 :root[data-accent="coral"] { --color-signal: #ef6f6c; --color-signal-dim: #c94d55; --color-violet: #63d8e8; --color-amber: #f2c14e; }
 :root[data-accent="lime"] { --color-signal: #b7e35f; --color-signal-dim: #7fac2e; --color-violet: #63d8e8; --color-amber: #f2c14e; }
+:root[data-accent="violet"] { --color-signal: #b58cff; --color-signal-dim: #815cc7; --color-violet: #63d8e8; --color-amber: #f2c14e; }
+:root[data-accent="blue"] { --color-signal: #5d9cff; --color-signal-dim: #3975cf; --color-violet: #b58cff; --color-amber: #ff914d; }
+:root[data-accent="orange"] { --color-signal: #ff914d; --color-signal-dim: #c9652d; --color-violet: #63d8e8; --color-amber: #f2c14e; }
+:root[data-accent="mint"] { --color-signal: #55ddb5; --color-signal-dim: #2caa83; --color-violet: #5d9cff; --color-amber: #f2c14e; }
 
 * {
   box-sizing: border-box;
@@ -270,6 +274,26 @@ body {
   filter: drop-shadow(0 0 5px color-mix(in srgb, var(--color-signal) 28%, transparent));
 }
 
+.skill-icon-fallback {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  min-height: 1.65rem;
+  padding: 0.2rem;
+  border-radius: 0.45rem;
+  background: var(--color-signal);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.42rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.05;
+  text-align: center;
+  animation: skillFloat 3.2s ease-in-out infinite;
+  animation-delay: var(--skill-delay, 0s);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-signal) 32%, transparent);
+}
+
 .skill-node-name {
   font-family: var(--font-mono);
   font-size: 0.6rem;
@@ -366,6 +390,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .neon-field { animation: none; }
   .skill-icon { animation: none; }
+  .skill-icon-fallback { animation: none; }
 }
 
 @media (max-width: 640px) {

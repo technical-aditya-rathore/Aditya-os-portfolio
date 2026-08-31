@@ -16,6 +16,10 @@ const accentOptions = [
   { id: "cyan", label: "Electric Cyan", color: "#63d8e8" },
   { id: "coral", label: "Signal Coral", color: "#ef6f6c" },
   { id: "lime", label: "Laser Lime", color: "#b7e35f" },
+  { id: "violet", label: "Neon Violet", color: "#b58cff" },
+  { id: "blue", label: "Hyper Blue", color: "#5d9cff" },
+  { id: "orange", label: "Launch Orange", color: "#ff914d" },
+  { id: "mint", label: "Fresh Mint", color: "#55ddb5" },
 ];
 
 export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: NavProps) {

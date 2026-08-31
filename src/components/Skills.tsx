@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { skillGroups } from "@/data/portfolio";
 import SectionLabel from "./SectionLabel";
@@ -46,7 +47,11 @@ const skillIconIds: Record<string, string> = {
 
 function SkillIcon({ name }: { name: string }) {
   const iconId = skillIconIds[name];
-  if (!iconId) return null;
+  const [failed, setFailed] = useState(!iconId);
+
+  if (failed) {
+    return <span className="skill-icon-fallback">{name}</span>;
+  }
 
   return (
     <img
@@ -55,6 +60,7 @@ function SkillIcon({ name }: { name: string }) {
       aria-hidden="true"
       className="skill-icon"
       loading="lazy"
+      onError={() => setFailed(true)}
     />
   );
 }
