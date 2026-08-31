@@ -46,10 +46,10 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-80 flex justify-center px-4 sm:px-6">
+      <header className="fixed top-0 left-0 right-0 z-80 flex justify-center px-2 sm:px-6">
         <nav
           className={`w-full flex items-center justify-between rounded-full glow-border glass transition-all duration-300 ${
-            scrolled ? "mt-3 max-w-5xl px-4 py-2" : "mt-5 max-w-[1350px] px-5 py-3"
+            scrolled ? "mt-3 max-w-5xl px-4 py-2" : "mt-5 max-w-[1350px] px-4 sm:px-5 py-3"
           }`}
         >
           <a
@@ -99,7 +99,7 @@ export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: Na
                     initial={{ opacity: 0, y: -8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                    className="system-settings glass absolute right-0 top-12 z-50 w-64 p-4"
+                    className="system-settings absolute right-0 top-12 z-50 w-[min(16rem,calc(100vw-1rem))] p-4 origin-top-right"
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Palette size={14} className="signal-text" />

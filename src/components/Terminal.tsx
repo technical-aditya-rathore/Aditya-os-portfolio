@@ -7,6 +7,15 @@ type Line = { text: string; kind?: "cmd" | "out" };
 
 const HELP = "about · projects · skills · experience · contact · github · resume · clear";
 
+function AssistantLogo() {
+  return (
+    <div className="relative flex h-9 w-9 items-center justify-center rounded-2xl border border-[var(--color-signal)] bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.3),transparent_35%),linear-gradient(145deg,color-mix(in_srgb,var(--color-signal)_25%,transparent),color-mix(in_srgb,var(--color-surface-2)_70%,transparent))] shadow-[0_0_22px_color-mix(in_srgb,var(--color-signal)_28%,transparent)]">
+      <span className="font-display text-sm font-bold tracking-[0.12em] text-[var(--color-ink)]">A</span>
+      <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-[var(--color-signal)] shadow-[0_0_12px_var(--color-signal)]" />
+    </div>
+  );
+}
+
 function run(cmd: string): { output: string[]; action?: () => void } {
   const c = cmd.trim().toLowerCase();
 
@@ -97,10 +106,13 @@ export default function Terminal() {
     <>
       <button
         onClick={() => setOpen(true)}
-        aria-label="Open terminal easter egg"
-        className="fixed bottom-5 right-5 z-40 w-11 h-11 rounded-full glass flex items-center justify-center text-[var(--color-text-dim)] hover:text-[var(--color-signal)] hover:border-[var(--color-signal)] transition-colors"
+        aria-label="Open portfolio assistant"
+        className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-full glass border border-[var(--color-line)] px-2.5 py-2 text-[var(--color-text-dim)] shadow-[0_18px_38px_-24px_rgba(0,0,0,0.9)] transition-colors hover:border-[var(--color-signal)] hover:text-[var(--color-signal)]"
       >
-        <TerminalSquare size={18} />
+        <AssistantLogo />
+        <span className="hidden sm:inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-dim)]">
+          <span>Assistant</span>
+        </span>
       </button>
 
       <AnimatePresence>

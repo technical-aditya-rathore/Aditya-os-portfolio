@@ -60,8 +60,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
   background: var(--color-ink);
   transition: background-color 300ms ease;
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -206,6 +211,11 @@ body {
 
 .system-settings {
   border-radius: 14px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--color-surface) 96%, transparent), color-mix(in srgb, var(--color-surface-2) 78%, transparent));
+  border: 1px solid color-mix(in srgb, var(--color-signal) 18%, var(--color-line));
+  box-shadow: 0 20px 48px -30px rgba(0, 0, 0, 0.88), inset 0 1px 0 color-mix(in srgb, white 12%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .skill-field {
@@ -394,6 +404,14 @@ body {
 }
 
 @media (max-width: 640px) {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
   .skill-band {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -401,6 +419,10 @@ body {
   }
 
   .skill-orbit { gap: 1rem 0.8rem; }
+
+  .system-settings {
+    width: min(16rem, calc(100vw - 1rem));
+  }
 }
 
 .text-balance { text-wrap: balance; }
