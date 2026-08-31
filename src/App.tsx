@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import BootScreen from "@/components/BootScreen";
-import { ScrollProgressBar, SystemHUD } from "@/components/HUD";
+import { ScrollProgressBar } from "@/components/HUD";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -27,6 +27,24 @@ export default function App() {
     localStorage.setItem("aditya-accent", accent);
   }, [accent, isDay]);
 
+  useEffect(() => {
+    const updateGlow = (x: number, y: number) => {
+      document.documentElement.style.setProperty("--pointer-x", `${x}px`);
+      document.documentElement.style.setProperty("--pointer-y", `${y}px`);
+    };
+    const onPointerMove = (event: PointerEvent) => updateGlow(event.clientX, event.clientY);
+    const onTouchStart = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (touch) updateGlow(touch.clientX, touch.clientY);
+    };
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("touchstart", onTouchStart);
+    };
+  }, []);
+
   return (
     <>
       {!booted && <BootScreen onDone={() => setBooted(true)} />}
@@ -40,7 +58,13 @@ export default function App() {
         <div className="grain" />
         <div className="neon-field" aria-hidden="true" />
         <ScrollProgressBar />
-        <Nav isDay={isDay} onThemeToggle={() => setIsDay((current) => !current)} />
+        <div className="touch-glow" aria-hidden="true" />
+        <Nav
+          isDay={isDay}
+          onThemeToggle={() => setIsDay((current) => !current)}
+          accent={accent}
+          onAccentChange={setAccent}
+        />
 
         <main>
           <Hero />
@@ -55,8 +79,7 @@ export default function App() {
           <Contact />
         </main>
 
-        <Footer accent={accent} onAccentChange={setAccent} />
-        <SystemHUD />
+        <Footer />
         <Terminal />
       </div>
     </>

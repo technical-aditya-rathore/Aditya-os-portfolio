@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BatteryCharging, Check, Code2, ExternalLink, Settings2, Wifi, Clock3 } from "lucide-react";
+import { BatteryCharging, Code2, ExternalLink, Wifi, Clock3 } from "lucide-react";
 import { contactInfo, personalInfo, socialLinks } from "@/data/portfolio";
 import { useBattery, useClock, useOnlineStatus } from "@/lib/hooks";
 import LegalModal from "./LegalModal";
@@ -17,21 +17,8 @@ const socials = [
   { key: "instagram", label: "Instagram", icon: InstagramIcon, url: socialLinks.instagram },
 ];
 
-const accentOptions = [
-  { id: "gold", label: "Solar Gold", color: "#f2c14e" },
-  { id: "cyan", label: "Electric Cyan", color: "#63d8e8" },
-  { id: "coral", label: "Signal Coral", color: "#ef6f6c" },
-  { id: "lime", label: "Laser Lime", color: "#b7e35f" },
-];
-
-interface FooterProps {
-  accent: string;
-  onAccentChange: (accent: string) => void;
-}
-
-export default function Footer({ accent, onAccentChange }: FooterProps) {
+export default function Footer() {
   const [legal, setLegal] = useState<"privacy" | "terms" | null>(null);
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const clock = useClock();
   const online = useOnlineStatus();
   const battery = useBattery();
@@ -86,55 +73,15 @@ export default function Footer({ accent, onAccentChange }: FooterProps) {
           </div>
         </div>
 
-        <div className="relative mb-10 font-mono text-xs">
-          <button
-            onClick={() => setSettingsOpen((open) => !open)}
-            aria-expanded={settingsOpen}
-            aria-controls="system-settings"
-            className="system-status-button glass w-full text-left p-5 transition-colors"
-          >
-            <span className="flex items-center justify-between gap-4">
-              <span className="flex items-center gap-2 font-display font-semibold text-sm">
-                <span className="w-2 h-2 rounded-full bg-[var(--color-signal)] shadow-[0_0_10px_var(--color-signal)] animate-blink" />
-                ADITYA<span className="signal-text">.OS</span>
-              </span>
-              <span className="flex items-center gap-2 text-[var(--color-signal)] uppercase tracking-widest text-[10px]">
-                <Settings2 size={14} /> System settings
-              </span>
-            </span>
-            <span className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[var(--color-text-dim)]">
-              <span className="flex items-center gap-2"><span className="text-[var(--color-signal)]">●</span> ACTIVE</span>
-              <span className="flex items-center gap-2"><BatteryCharging size={14} className="text-[var(--color-signal)]" /> {battery.supported && battery.level !== null ? `${battery.level}%` : "N/A"}</span>
+        <div className="mb-10 flex justify-center px-10">
+          <div className="notification-ring glass w-full max-w-3xl rounded-full px-4 py-3 font-mono text-[10px] tracking-widest text-[var(--color-text-dim)]">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+              <span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-[var(--color-signal)] shadow-[0_0_10px_var(--color-signal)] animate-blink" /> ACTIVE</span>
+              <span className="flex items-center gap-2"><BatteryCharging size={14} className="text-[var(--color-signal)]" /> BAT {battery.supported && battery.level !== null ? `${battery.level}%` : "N/A"}</span>
               <span className="flex items-center gap-2"><Wifi size={14} className={online ? "text-[var(--color-signal)]" : "text-[var(--color-rose)]"} /> {online ? "ONLINE" : "OFFLINE"}</span>
               <span className="flex items-center gap-2"><Clock3 size={14} className="text-[var(--color-signal)]" /> {pad(clock.getHours())}:{pad(clock.getMinutes())} IST</span>
-            </span>
-          </button>
-
-          {settingsOpen && (
-            <div id="system-settings" className="system-settings glass absolute left-0 right-0 bottom-full mb-3 z-10 p-5">
-              <div className="flex items-center justify-between gap-4 mb-4">
-                <div>
-                  <p className="label">Interface palette</p>
-                  <p className="text-sm text-[var(--color-text-dim)] mt-1">Choose your signal color</p>
-                </div>
-                <Check size={16} className="signal-text" />
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                {accentOptions.map((option) => (
-                  <button
-                    key={option.id}
-                    onClick={() => onAccentChange(option.id)}
-                    aria-label={`Use ${option.label} palette`}
-                    aria-pressed={accent === option.id}
-                    className={`accent-option flex items-center gap-2 rounded-lg border px-3 py-2 text-left transition-colors ${accent === option.id ? "border-[var(--color-signal)] bg-[var(--color-signal)]/10" : "border-[var(--color-line)]"}`}
-                  >
-                    <span className="h-3 w-3 rounded-full" style={{ background: option.color, boxShadow: `0 0 10px ${option.color}` }} />
-                    <span className="text-[10px] text-[var(--color-text-dim)]">{option.label}</span>
-                  </button>
-                ))}
-              </div>
             </div>
-          )}
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">

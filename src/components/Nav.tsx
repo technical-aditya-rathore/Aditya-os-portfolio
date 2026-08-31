@@ -1,17 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Check, Menu, Moon, Palette, Settings2, Sun, X } from "lucide-react";
 import { navItems, personalInfo } from "@/data/portfolio";
 import { useActiveSection } from "@/lib/hooks";
 
 interface NavProps {
   isDay: boolean;
   onThemeToggle: () => void;
+  accent: string;
+  onAccentChange: (accent: string) => void;
 }
 
-export default function Nav({ isDay, onThemeToggle }: NavProps) {
+const accentOptions = [
+  { id: "gold", label: "Solar Gold", color: "#f2c14e" },
+  { id: "cyan", label: "Electric Cyan", color: "#63d8e8" },
+  { id: "coral", label: "Signal Coral", color: "#ef6f6c" },
+  { id: "lime", label: "Laser Lime", color: "#b7e35f" },
+];
+
+export default function Nav({ isDay, onThemeToggle, accent, onAccentChange }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const settingsRef = useRef<HTMLDivElement>(null);
   const active = useActiveSection(navItems.map((n) => n.href.replace("#", "")));
 
   useEffect(() => {
@@ -19,6 +30,14 @@ export default function Nav({ isDay, onThemeToggle }: NavProps) {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) setSettingsOpen(false);
+    };
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    return () => document.removeEventListener("mousedown", closeOnOutsideClick);
   }, []);
 
   return (
@@ -58,15 +77,62 @@ export default function Nav({ isDay, onThemeToggle }: NavProps) {
           </ul>
 
           <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={onThemeToggle}
-              aria-label={isDay ? "Switch to night view" : "Switch to day view"}
-              aria-pressed={isDay}
-              title={isDay ? "Switch to night view" : "Switch to day view"}
-              className="w-9 h-9 rounded-full border border-[var(--color-line)] flex items-center justify-center text-[var(--color-text-dim)] hover:text-[var(--color-signal)] hover:border-[var(--color-signal)] transition-colors"
-            >
-              {isDay ? <Moon size={15} /> : <Sun size={15} />}
-            </button>
+            <div className="relative" ref={settingsRef}>
+              <button
+                onClick={() => setSettingsOpen((open) => !open)}
+                aria-label="Open system settings"
+                aria-expanded={settingsOpen}
+                aria-controls="top-system-settings"
+                title="System settings"
+                className="settings-trigger w-9 h-9 rounded-full border border-[var(--color-line)] flex items-center justify-center text-[var(--color-text-dim)] transition-colors"
+              >
+                <Settings2 size={15} />
+              </button>
+              <AnimatePresence>
+                {settingsOpen && (
+                  <motion.div
+                    id="top-system-settings"
+                    initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                    className="system-settings glass absolute right-0 top-12 z-50 w-64 p-4"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <Palette size={14} className="signal-text" />
+                      <p className="label">System settings</p>
+                    </div>
+                    <div className="flex items-center justify-between rounded-lg border border-[var(--color-line)] p-3 mb-3">
+                      <span className="text-xs text-[var(--color-text-dim)]">Display mode</span>
+                      <button
+                        onClick={onThemeToggle}
+                        aria-label={isDay ? "Switch to night view" : "Switch to day view"}
+                        aria-pressed={isDay}
+                        className="theme-switch flex items-center gap-1 rounded-full border border-[var(--color-line)] p-1"
+                      >
+                        <span className={`p-1.5 rounded-full ${!isDay ? "bg-[var(--color-signal)] text-[var(--color-ink)]" : "text-[var(--color-text-faint)]"}`}><Moon size={12} /></span>
+                        <span className={`p-1.5 rounded-full ${isDay ? "bg-[var(--color-signal)] text-[var(--color-ink)]" : "text-[var(--color-text-faint)]"}`}><Sun size={12} /></span>
+                      </button>
+                    </div>
+                    <p className="label mb-2">Signal color</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {accentOptions.map((option) => (
+                        <button
+                          key={option.id}
+                          onClick={() => onAccentChange(option.id)}
+                          aria-label={`Use ${option.label} palette`}
+                          aria-pressed={accent === option.id}
+                          className={`flex items-center gap-2 rounded-lg border px-2.5 py-2 text-left transition-colors ${accent === option.id ? "border-[var(--color-signal)] bg-[var(--color-signal)]/10" : "border-[var(--color-line)]"}`}
+                        >
+                          <span className="h-2.5 w-2.5 rounded-full" style={{ background: option.color, boxShadow: `0 0 10px ${option.color}` }} />
+                          <span className="text-[10px] text-[var(--color-text-dim)]">{option.label}</span>
+                          {accent === option.id && <Check size={12} className="ml-auto signal-text" />}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             <a
               href={personalInfo.resumeUrl}
               target="_blank"

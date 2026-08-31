@@ -57,6 +57,23 @@ export interface Skill {
   note: string;
 }
 
+export interface SkillGroup {
+  title: string;
+  category: string;
+  skills: string[];
+}
+
+export const skillGroups: SkillGroup[] = [
+  { title: "Programming Languages", category: "01", skills: ["C", "C++", "Java", "Python", "JavaScript", "TypeScript", "PHP"] },
+  { title: "Frontend", category: "02", skills: ["HTML", "CSS", "React", "Next.js", "Tailwind CSS", "Bootstrap"] },
+  { title: "Backend", category: "03", skills: ["Node.js", "Express", "Django", "FastAPI", "Laravel"] },
+  { title: "Databases", category: "04", skills: ["MySQL", "PostgreSQL", "MongoDB", "SQLite"] },
+  { title: "Cloud & Deployment", category: "05", skills: ["AWS", "GCP", "Vercel", "Netlify", "Docker"] },
+  { title: "Data Science & AI", category: "06", skills: ["Python", "TensorFlow", "Pandas", "NumPy", "Data Analytics", "Power BI"] },
+  { title: "Tools", category: "07", skills: ["Git", "GitHub", "GitHub Actions", "Docker"] },
+  { title: "Design", category: "08", skills: ["Figma", "Canva", "Notion"] },
+];
+
 export const skills: Skill[] = [
   { name: "Python", category: "Language", level: "Proficient", note: "Primary language for data work, scripting and problem solving." },
   { name: "C", category: "Language", level: "Proficient", note: "Core coursework and DSA foundations." },
