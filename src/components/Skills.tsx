@@ -69,7 +69,7 @@ export default function Skills() {
         title="Skills"
         description="A structured view of the languages, platforms and disciplines behind my work."
       />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="skill-field">
         {skillGroups.map((group, i) => (
           <motion.article
             key={group.title}
@@ -77,22 +77,22 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.4, delay: i * 0.04 }}
-            className="skill-panel glass p-5 min-h-40"
+            className="skill-band"
           >
-            <div className="flex items-center justify-between gap-3 mb-5">
-              <h3 className="font-display font-semibold text-sm">{group.title}</h3>
+            <div className="skill-band-title">
               <span className="font-mono text-[10px] text-[var(--color-signal)]">{group.category}</span>
+              <h3 className="font-display font-semibold text-sm">{group.title}</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="skill-orbit">
               {group.skills.map((skill, skillIndex) => (
-                <span
+                <div
                   key={skill}
-                  className="skill-chip"
+                  className="skill-node"
                   style={{ "--skill-delay": `${(skillIndex % 5) * 0.18}s` } as React.CSSProperties}
                 >
-                  <SkillIcon name={skill} />
-                  {skill}
-                </span>
+                  <span className="skill-node-icon"><SkillIcon name={skill} /></span>
+                  <span className="skill-node-name">{skill}</span>
+                </div>
               ))}
             </div>
           </motion.article>
