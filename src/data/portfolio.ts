@@ -22,14 +22,13 @@ export const personalInfo = {
   status: "AVAILABLE FOR OPPORTUNITIES",
   location: "Ranchi, Jharkhand, India",
   photoPath: "/images/profile.webp", // Drop your photo here — 1:1 or 4:5 aspect ratio recommended
-  resumeUrl:
-    "https://d8it4huxumps7.cloudfront.net/uploads/attachements/user-resumes/684849453ba22_pdf__1_.pdf",
+  resumeUrl: "/Aditya Resume.pdf",
 };
 
 export const stats = [
   { value: "10+", label: "Projects Built" },
   { value: "4", label: "Hackathons" },
-  { value: "3", label: "Internships" },
+  { value: "4", label: "Internships" },
   { value: "24", label: "Certificates" },
 ];
 
@@ -290,6 +289,17 @@ export interface Internship {
 }
 
 export const internships: Internship[] = [
+  {
+    organization: "SolFinder Research",
+    role: "Full Stack Developer Intern",
+    duration: "1 Jul - 31 Jul 2026",
+    work: [
+      "Successfully completed a summer internship program in full-stack development.",
+      "Gained practical experience contributing to software development work in a professional environment.",
+    ],
+    stack: ["Full Stack Development"],
+    image: "/internships/SolFinder Research FullStack Developer.jpeg",
+  },
   {
     organization: "RV Web",
     role: "Web Development Intern",
